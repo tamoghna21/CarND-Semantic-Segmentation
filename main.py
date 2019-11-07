@@ -51,8 +51,7 @@ def load_vgg(sess, vgg_path):
 	
 	return input_image, keep_prob, vgg_layer3_out, vgg_layer4_out, vgg_layer7_out
 	
-#tests.test_load_vgg(load_vgg, tf) #load vgg will fail if saved_model.pb and variables are note present here
-print("End of load_vgg")
+print("End of load_vgg....Press Enter to continue")
 input()
 
 
@@ -147,8 +146,8 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 	
 	return nn_last_layer
 	
-tests.test_layers(layers)
-print("End of layers")
+
+print("End of layers....Press Enter to continue")
 input()
 
 
@@ -186,8 +185,8 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 	# Merge summary operation
 	merged = tf.summary.merge_all()
 	return logits, train_op, cross_entropy_loss
-tests.test_optimize(optimize)
-print("end of optimize")
+
+print("End of optimize....Press Enter to continue")
 input()
 
 def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_loss, input_image,
@@ -242,8 +241,8 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
 			print('Saving model')
 			saver.save(sess, './model.ckpt')
 	#pass
-#tests.test_train_nn(train_nn)	#This one can only be called if 'saver' is removed in train_nn call
-print("end of train_nn")
+
+print("End of train_nn...Press Enter to continue")
 input()
 
 def run():
@@ -251,7 +250,7 @@ def run():
 	image_shape = (160, 576)
 	data_dir = './data'
 	runs_dir = './runs'
-	tests.test_for_kitti_dataset(data_dir)# This will also download the kitti dataset, if not already there
+	#tests.test_for_kitti_dataset(data_dir)# This will also download the kitti dataset, if not already there
 	
 	correct_label = tf.placeholder(tf.int32, [None, None, None, num_classes])
 	learning_rate = tf.placeholder(tf.float32)
@@ -261,7 +260,7 @@ def run():
 	batch_size = 4
 
 	# Download pretrained vgg model
-	helper.maybe_download_pretrained_vgg(data_dir)
+	#helper.maybe_download_pretrained_vgg(data_dir)
 
 	# OPTIONAL: Train and Inference on the cityscapes dataset instead of the Kitti dataset.
 	# You'll need a GPU with at least 10 teraFLOPS to train on.
@@ -292,10 +291,11 @@ def run():
 			 correct_label, keep_prob, learning_rate,saver)
 
 		# TODO: Save inference data using helper.save_inference_samples
-		helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
-
-		# OPTIONAL: Apply the trained model to a video
+		#helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
 
 
+
+##Finally training is initiated
 if __name__ == '__main__':
 	run()
+print("End")
